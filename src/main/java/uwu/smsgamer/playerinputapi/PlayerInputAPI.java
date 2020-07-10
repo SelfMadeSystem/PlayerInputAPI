@@ -10,7 +10,7 @@ import uwu.smsgamer.playerinputapi.gui.GUI;
 import java.util.*;
 
 public final class PlayerInputAPI implements Listener {
-    public static HashMap<HumanEntity, List<GUI>> history = new HashMap<>();
+    public static final HashMap<HumanEntity, List<GUI>> history = new HashMap<>();
     @Getter
     @Setter
     private static Plugin plugin;
