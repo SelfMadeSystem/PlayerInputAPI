@@ -7,6 +7,9 @@ import org.bukkit.plugin.Plugin;
 import uwu.smsgamer.playerinputapi.PlayerInputAPI;
 
 public abstract class PlayerInput implements Listener {
+    // Anvil
+    // Sign
+    // Text
     protected Plugin pl;
     protected PlayerInput() {
         if (PlayerInputAPI.getPlugin() == null) throw new NullPointerException("Plugin not initialized. Forget to setup PlayerInputAPI?");
