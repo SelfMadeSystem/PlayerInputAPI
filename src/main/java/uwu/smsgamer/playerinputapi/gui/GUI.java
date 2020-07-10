@@ -1,8 +1,8 @@
 package uwu.smsgamer.playerinputapi.gui;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import uwu.smsgamer.playerinputapi.*;
 
 import java.util.*;
@@ -10,6 +10,10 @@ import java.util.*;
 public abstract class GUI implements Listener {
     protected Set<HumanEntity> opened = new HashSet<>();
     protected Actions.PlayerAction closeAction;
+
+    public GUI() {
+        Bukkit.getPluginManager().registerEvents(this, PlayerInputAPI.getPlugin());
+    }
 
     public void openPlayer(HumanEntity player) {
         try {
@@ -32,12 +36,13 @@ public abstract class GUI implements Listener {
 
     public void close(HumanEntity player) {
         this.opened.remove(player);
-        PlayerInputAPI.history.get(player).remove(this);
         this.closeAction.run(player);
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    /* TODO: Will do this for inventory guis.
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onClose(InventoryCloseEvent event) {
-        close(event.getPlayer());
-    }
+        if (PlayerInputAPI.opened(event.getPlayer(), this))
+            PlayerInputAPI.prevGUI(event.getPlayer());
+    }*/
 }
